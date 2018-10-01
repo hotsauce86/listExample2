@@ -140,8 +140,8 @@ public class listExample2 {
         System.out.println("scoreboard size = " + mainScoreBoard.size());
         System.out.println("player ID: " + a + ", Score: "+ ave);
 
-        playerGames somescore = new playerGames(a, ave);
-        topgames.add(somescore);
+        //playerGames somescore = new playerGames(a, ave);
+        //topgames.add(somescore);
 
     }
 
@@ -168,35 +168,50 @@ public class listExample2 {
         int gameDiv=0;
         int lastID=1;
 
+        /*
+            The sorter:
+                This is why we need 1->n playerID as a gap could count a player twice.
+                The loop starts with player '1' and goes to the end of the list until
+                it reaches the end. it keeps adding the sum of scores and counting
+                games until it reaches a new player or it hits the end of the list
+                in which case it then computes the average and stores the values
+                into the list
+         */
         for(int i=0; i<sortedBoard.size(); i++){
             if(sortedBoard.get(i).getPlayerID() != lastID){
+                //we add the last playerID and their ave score
                 playerGames ranker = new playerGames(sortedBoard.get(i-1).getPlayerID(), (float) scoreSum/gameDiv);
                 tops.add(ranker);
+                //we don't stop yet, so we reset the score sum and the game divider and increment the playerID
                 scoreSum=sortedBoard.get(i).getScore();
                 gameDiv=1;
                 lastID++;
             }
             else{
+                //we continue to add to the sum and game counter
                 scoreSum += sortedBoard.get(i).getScore();
                 gameDiv++;
             }
             if(i == sortedBoard.size()-1){
+                //we are at the end of the list and the playerID won't change, so we compute the score ave here
                 playerGames ranker = new playerGames(sortedBoard.get(i).getPlayerID(), (float) scoreSum/gameDiv);
                 tops.add(ranker);
-                scoreSum=sortedBoard.get(i).getScore();
-                gameDiv=1;
-                lastID++;
+                //scoreSum=sortedBoard.get(i).getScore();
+               // gameDiv=1;
+               // lastID++;
             }
             System.out.println("SORTED BOARD: "+ sortedBoard.get(i).getPlayerID()+ " " + sortedBoard.get(i).getScore());
         }
 
+        //we sort the list by the highest average score
         Collections.sort(tops, new sorterTops());
 
+        //this it just to test what is in the entire list
         System.out.println("/////////////CURRENT STATE OF TOPS///////////////");
         for(int i =0; i < tops.size(); i ++){
             System.out.println(tops.get(i).getPlayerID()+ " " +tops.get(i).getGameTotal());
         }
-
+        //this is the proper output with 'n' results
         System.out.println("///////////////////////////HERE ARE THE RETURNED RESULTS WITH COUNTER SIZE/////////////////////////////");
         for(int i =0; i < counter; i ++){
             System.out.println(tops.get(i).getPlayerID()+ " " +tops.get(i).getGameTotal());
@@ -216,14 +231,17 @@ public class listExample2 {
         scoreboard (just without any scores)
      */
     public static void clearPlayer(int playerToRemove){
-
+        //need to iterate through the main scoreboard
         Iterator<scoreBoard> clearplayer = mainScoreBoard.iterator();
         while(clearplayer.hasNext()){
             Object o = clearplayer.next();
+            //we remove the score if we find the same playerID
             if (((scoreBoard) o).getPlayerID()== playerToRemove){
                 clearplayer.remove();
             }
         }
+        //we need to add a placeholder score so they can still show up in the results
+        //and also not break the topScore sorting method
          scoreBoard addempty = new scoreBoard(playerToRemove, -1);
         mainScoreBoard.add(addempty);
 
