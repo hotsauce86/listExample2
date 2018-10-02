@@ -42,7 +42,7 @@ public class listExample2 {
 
 
     static ArrayList<scoreBoard> mainScoreBoard =  new ArrayList<>();
-    static ArrayList<playerGames> topgames = new ArrayList<>();
+    //static ArrayList<playerGames> topgames = new ArrayList<>();
 
 
 
@@ -60,16 +60,6 @@ public class listExample2 {
         /*
             TEST CASES
          */
-        scoreBoard test1 =new scoreBoard(1,2);
-        scoreBoard test2 =new scoreBoard(2,3);
-        scoreBoard test3 =new scoreBoard(2,4);
-        scoreBoard test4 =new scoreBoard(3,1);
-
-       /// mainScoreBoard.add(test1);
-      ///  mainScoreBoard.add(test2);
-       /// mainScoreBoard.add(test3);
-       /// mainScoreBoard.add(test4);
-
 
         addscore(1,2);
         addscore(2,3);
@@ -83,14 +73,13 @@ public class listExample2 {
         addscore(2,4);
         addscore(4,6);
         addscore(5,1);
-        addscore(7,0);
-
-        addscore(6,0);
+        addscore(7,0);//out of order
+        addscore(6,0);//but still 1->n
 
         topScore(3);
 
         clearPlayer(3);
-        clearPlayer(3);
+        clearPlayer(3);//cleared twice
 
         topScore(3);
 
@@ -100,7 +89,7 @@ public class listExample2 {
 
         addscore(7,1);
 
-        topScore(6);
+        topScore(7);    // does not work if n is greater than the # of players
 
         System.out.println("End of program");
     }
