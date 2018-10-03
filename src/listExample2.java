@@ -39,12 +39,8 @@ import java.util.Iterator;
  */
 public class listExample2 {
 
-
-
     static ArrayList<scoreBoard> mainScoreBoard =  new ArrayList<>();
     //static ArrayList<playerGames> topgames = new ArrayList<>();
-
-
 
     /*
         WARNING!!!
@@ -90,6 +86,8 @@ public class listExample2 {
         addscore(7,1);
 
         topScore(7);    // does not work if n is greater than the # of players
+
+        top2Diff();
 
         System.out.println("End of program");
     }
@@ -143,7 +141,7 @@ public class listExample2 {
         an average for each player like above in the 'addScore', sorts it by highest average,
         THEN returns the top 'n' results based on the value 'counter' has
      */
-    public static void topScore(int counter){
+    public static ArrayList<playerGames> topScore(int counter){
 
         //list to store sorted scores
         ArrayList<scoreBoard> sortedBoard = new ArrayList<>();
@@ -208,6 +206,8 @@ public class listExample2 {
 
         System.out.println("////end of sorted tops////");
 
+        return tops;
+
     }
 
 
@@ -257,6 +257,20 @@ public class listExample2 {
 
             }
         }
+
+    }
+
+    /*
+        The topDiff finds the positive difference between the highest score and the second highest score.
+
+     */
+    public static void top2Diff(){
+        ArrayList<playerGames> difference = new ArrayList<>();
+
+        difference = topScore(0);
+        float x=0;
+        x = difference.get(0).getGameTotal()-difference.get(1).getGameTotal();
+        System.out.println("Difference: +" + x);
 
     }
 
