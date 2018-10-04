@@ -23,4 +23,9 @@ public class playerGames {
     public void setGameTotal(float gameTotal) {
         this.gameTotal = gameTotal;
     }
+
+    public float setScore(float x){
+        this.gameTotal = x;
+        return this.gameTotal;
+    }
 }

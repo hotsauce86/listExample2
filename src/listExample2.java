@@ -1,4 +1,5 @@
 import javax.management.MBeanAttributeInfo;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -261,10 +262,12 @@ public class listExample2 {
     }
 
     /*
-        The topDiff finds the positive difference between the highest score and the second highest score.
+        The topDiff finds the positive difference between each player in rank and returns
+        the positive difference for the top players. Last player has no score to compare
+        and is ignored
 
      */
-    public static void top2Diff(){
+    public static ArrayList<playerGames> top2Diff(){
         ArrayList<playerGames> difference = new ArrayList<>();
 
         difference = topScore(0);
@@ -272,10 +275,15 @@ public class listExample2 {
         for (int i =1; i < difference.size(); i++){
             x = difference.get(i-1).getGameTotal()-difference.get(i).getGameTotal();
             System.out.println("Difference "+ i +" : +" + x);
+            difference.get(i-1).setScore(x);
         }
        // x = difference.get(0).getGameTotal()-difference.get(1).getGameTotal();
         //System.out.println("Difference: +" + x);
+        for(int i =0; i < difference.size(); i++){
+            System.out.println("player: " + difference.get(i).getPlayerID()+ ", Score: "+ difference.get(i).getGameTotal());
+        }
 
+        return difference;
     }
 
 
