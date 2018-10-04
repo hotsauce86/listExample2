@@ -269,9 +269,15 @@ public class listExample2 {
 
         difference = topScore(0);
         float x=0;
-        x = difference.get(0).getGameTotal()-difference.get(1).getGameTotal();
-        System.out.println("Difference: +" + x);
+        for (int i =1; i < difference.size(); i++){
+            x = difference.get(i-1).getGameTotal()-difference.get(i).getGameTotal();
+            System.out.println("Difference "+ i +" : +" + x);
+        }
+       // x = difference.get(0).getGameTotal()-difference.get(1).getGameTotal();
+        //System.out.println("Difference: +" + x);
 
     }
+
+
 
 }
