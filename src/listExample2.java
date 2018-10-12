@@ -91,6 +91,10 @@ public class listExample2 {
         top2Diff();
 
         countPlayerGameTotal(2);
+
+        for(int i=0; i <=7; i++){
+            countPlayerGameTotal(i);
+        }
         System.out.println("End of program");
     }
 
