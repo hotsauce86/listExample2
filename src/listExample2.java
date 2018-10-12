@@ -90,6 +90,7 @@ public class listExample2 {
 
         top2Diff();
 
+        countPlayerGameTotal(2);
         System.out.println("End of program");
     }
 
@@ -284,6 +285,17 @@ public class listExample2 {
         }
 
         return difference;
+    }
+
+
+    public static void countPlayerGameTotal (int playerID){
+        int gameTotal =0;
+        for (int i = 0; i < mainScoreBoard.size(); i ++){
+            if(mainScoreBoard.get(i).getPlayerID() == playerID){
+                gameTotal++;
+            }
+        }
+        System.out.println("playerID: "+ playerID+",    GameTotal: "+ gameTotal);
     }
 
 
